@@ -39,4 +39,4 @@ const responseData = (result) => {
   }
 };
 
-export default PostSignIn();
+window.PostSignIn = PostSignIn;
