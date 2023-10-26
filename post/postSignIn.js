@@ -2,7 +2,7 @@ import { postWithToken } from "https://jscroot.github.io/api/croot.js";
 import { getValue } from "https://jscroot.github.io/element/croot.js";
 import { setCookieWithExpireHour } from "https://jscroot.github.io/cookie/croot.js";
 
-export default function PostSignIn() {
+const PostSignIn = () => {
   const target_url =
     "https://asia-southeast2-bursakerja-project.cloudfunctions.net/intermonitoring-login";
   const tokenkey = "token";
@@ -14,7 +14,7 @@ export default function PostSignIn() {
   };
 
   postWithToken(target_url, tokenkey, tokenvalue, datainjson, responseData);
-}
+};
 
 const responseData = (result) => {
   if (result.token) {
@@ -38,3 +38,5 @@ const responseData = (result) => {
     });
   }
 };
+
+export default PostSignIn();
