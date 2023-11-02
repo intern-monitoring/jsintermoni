@@ -42,7 +42,7 @@ const responseData = (result) => {
       text: "You have successfully logged in.",
     }).then(() => {
       // Redirect to homePelamar.html
-      window.location.href = "./mahasiswa/index.html";
+      window.location.href = "./mitra/index.html";
     });
   } else {
     // Jika tidak memiliki token, tampilkan SweetAlert pesan kesalahan
