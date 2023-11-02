@@ -1,4 +1,4 @@
-function deleteData(IDHAPUS) {
+function deleteMagang(IDHAPUS) {
   var magangId = IDHAPUS;
   var target_url =
     "https://asia-southeast2-bursakerja-project.cloudfunctions.net/intermoni-delete-magang?id=" +
