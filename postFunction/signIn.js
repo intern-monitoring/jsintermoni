@@ -1,25 +1,40 @@
-import { postWithToken } from "https://jscroot.github.io/api/croot.js";
 import { getValue } from "https://jscroot.github.io/element/croot.js";
 import { setCookieWithExpireHour } from "https://jscroot.github.io/cookie/croot.js";
 
+function postWithToken(target_url, datajson, responseFunction) {
+  var myHeaders = new Headers();
+  myHeaders.append("Content-Type", "application/json");
+
+  var raw = JSON.stringify(datajson);
+
+  var requestOptions = {
+    method: "POST",
+    headers: myHeaders,
+    body: raw,
+    redirect: "follow",
+  };
+
+  fetch(target_url, requestOptions)
+    .then((response) => response.text())
+    .then((result) => responseFunction(JSON.parse(result)))
+    .catch((error) => console.log("error", error));
+}
+
 const PostSignIn = () => {
   const target_url =
-    "https://asia-southeast2-bursakerja-project.cloudfunctions.net/intermonitoring-login";
-  const tokenkey = "token";
-  const tokenvalue =
-    "3108501ddf2f9aa33f3a7c0e387339b131d8a4d22818feb511b0fe1bc3a16b36";
+    "https://asia-southeast2-bursakerja-project.cloudfunctions.net/intermoni-login";
   const datainjson = {
     email: getValue("email"),
     password: getValue("password"),
   };
 
-  postWithToken(target_url, tokenkey, tokenvalue, datainjson, responseData);
+  postWithToken(target_url, datainjson, responseData);
 };
 
 const responseData = (result) => {
   if (result.token) {
     // Jika memiliki token, simpan token di cookie
-    setCookieWithExpireHour("token", result.token, 2);
+    setCookieWithExpireHour("Authorization", result.token, 2);
     // Tampilkan SweetAlert berhasil login
     Swal.fire({
       icon: "success",
