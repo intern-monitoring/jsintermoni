@@ -11,7 +11,7 @@ const PostMagang = () => {
     posisi: getValue("posisi"),
     lokasi: getValue("lokasi"),
     deskripsimagang: getValue("deskripsimagang"),
-    infotambahan: getValue("infotambahan"),
+    infotambahanmagang: getValue("infotambahanmagang"),
     tentangmitra: getValue("tentangmitra"),
     expired: getValue("expired"),
   };
