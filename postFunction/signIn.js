@@ -41,8 +41,16 @@ const responseData = (result) => {
       title: "Login Successful",
       text: "You have successfully logged in.",
     }).then(() => {
-      // Redirect to homePelamar.html
-      window.location.href = "./mitra/index.html";
+      // Redirect based on the user role
+      if (result.role === "mahasiswa") {
+        window.location.href = "./mahasiswa/index.html";
+      } else if (result.role === "mitra") {
+        window.location.href = "./mitra/index.html";
+      } else {
+        // Handle other roles or scenarios if needed
+        // For example, redirect to a default page or show an error message
+        console.error("Unknown user role:", result.role);
+      }
     });
   } else {
     // Jika tidak memiliki token, tampilkan SweetAlert pesan kesalahan
