@@ -12,7 +12,7 @@ const logout = () => {
       localStorage.removeItem("previousPageURL");
       // Menghapus token dari cookie
       document.cookie =
-        "token= ; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
+        "Authorization= ; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
       // Redirect ke halaman sign-in.html
       window.location.href = "../signIn.html";
     }
