@@ -4,7 +4,7 @@ import { getCookie } from "https://jscroot.github.io/cookie/croot.js";
 
 const PostMagang = () => {
   const target_url =
-    "https://asia-southeast2-bursakerja-project.cloudfunctions.net/intermoni-insert-magang";
+    "https://asia-southeast2-bursakerja-project.cloudfunctions.net/intermoni-magang";
   const tokenvalue = getCookie("Authorization");
   const tokenkey = "Authorization";
   const datainjson = {
