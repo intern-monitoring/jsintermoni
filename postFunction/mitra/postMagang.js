@@ -12,7 +12,6 @@ const PostMagang = () => {
     lokasi: getValue("lokasi"),
     deskripsimagang: getValue("deskripsimagang"),
     infotambahanmagang: getValue("infotambahanmagang"),
-    tentangmitra: getValue("tentangmitra"),
     expired: getValue("expired"),
   };
   postWithToken(target_url, tokenkey, tokenvalue, datainjson, responseData);
