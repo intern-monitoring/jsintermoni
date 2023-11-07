@@ -19,7 +19,7 @@ const deleteMagang = async (IDHAPUS) => {
     myHeaders.append("Authorization", authorizationToken);
 
     const target_url =
-      "https://asia-southeast2-bursakerja-project.cloudfunctions.net/intermoni-delete-magang?id=" +
+      "https://asia-southeast2-bursakerja-project.cloudfunctions.net/intermoni-magang?id=" +
       magangId;
 
     try {
