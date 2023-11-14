@@ -10,8 +10,8 @@ const PostMagang = () => {
   const datainjson = {
     posisi: getValue("posisi"),
     lokasi: getValue("lokasi"),
-    deskripsimagang: getValue("deskripsimagang"),
-    infotambahanmagang: getValue("infotambahanmagang"),
+    deskripsimagang: document.getElementById("deskripsimagang"),
+    infotambahanmagang: document.getElementById("infotambahanmagang"),
     expired: getValue("expired"),
   };
   postWithToken(target_url, tokenkey, tokenvalue, datainjson, responseData);
