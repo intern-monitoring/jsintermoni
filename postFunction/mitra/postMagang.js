@@ -10,11 +10,12 @@ const PostMagang = () => {
   const datainjson = {
     posisi: getValue("posisi"),
     lokasi: getValue("lokasi"),
-    deskripsimagang: document.getElementById("deskripsimagang"),
-    infotambahanmagang: document.getElementById("infotambahanmagang"),
+    deskripsimagang: document.getElementById("deskripsimagang").innerHTML,
+    infotambahanmagang: document.getElementById("infotambahanmagang").innerHTML,
     expired: getValue("expired"),
   };
   postWithToken(target_url, tokenkey, tokenvalue, datainjson, responseData);
+  console.log(datainjson);
 };
 
 const responseData = (result) => {
