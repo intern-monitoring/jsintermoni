@@ -11,6 +11,7 @@ const logout = () => {
     if (result.isConfirmed) {
       localStorage.removeItem("previousPageURL");
       localStorage.removeItem("magangData");
+      localStorage.removeItem("magangData");
       // Menghapus token dari cookie
       document.cookie =
         "Authorization= ; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
