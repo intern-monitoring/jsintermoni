@@ -2,7 +2,7 @@ import { getCookie } from "https://jscroot.github.io/cookie/croot.js";
 
 const checkLoginStatus = () => {
   // Mendapatkan nilai cookie dengan nama "token" menggunakan fungsi getCookie
-  const token = getCookie("token");
+  const token = getCookie("Authorization");
 
   // Mendapatkan URL sebelumnya dari local storage (jika ada)
   const previousPageURL = localStorage.getItem("previousPageURL");

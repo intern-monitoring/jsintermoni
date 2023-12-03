@@ -2,7 +2,7 @@ import { getCookie } from "https://jscroot.github.io/cookie/croot.js";
 
 const checkTokenAndRedirect = () => {
   // Mendapatkan nilai cookie dengan nama "token" menggunakan fungsi getCookie
-  const token = getCookie("token");
+  const token = getCookie("Authorization");
 
   // Jika tidak ada token, kembalikan ke halaman signIn.html
   if (!token) {
