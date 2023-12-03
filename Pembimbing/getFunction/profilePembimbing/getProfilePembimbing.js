@@ -104,7 +104,6 @@ export function responseData(results) {
 export function isiRow(value) {
   const content = dataPembimbing
     .replace("#NAMAPEMBIMBING#", value.namalengkap)
-    .replace("#TANGGALLAHIR#", value.tanggallahir)
     .replace("#NIK#", value.nik)
     .replace("#PRODI#", value.prodi)
     .replace("#EMAIL#", value.akun.email)

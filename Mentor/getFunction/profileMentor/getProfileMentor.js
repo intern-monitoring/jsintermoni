@@ -106,7 +106,6 @@ export function responseData(results) {
 export function isiRow(value) {
   const content = dataMentor
     .replace("#NAMAMENTOR#", value.namalengkap)
-    .replace("#TANGGALLAHIR#", value.tanggallahir)
     .replace("#NIK#", value.nik)
     .replace("#PERUSAHAAN#", value.mitra.nama)
     .replace("#EMAIL#", value.akun.email)
