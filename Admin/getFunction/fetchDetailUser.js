@@ -1,11 +1,9 @@
+import { urlFetch } from "./user/urlDetailUser.js";
 import { getCookie } from "https://jscroot.github.io/cookie/croot.js";
-import { urlFetch } from "./urlDetailUser.js";
-
-import { responseDataMitra } from "./detailUserMitra.js";
-import { responseDataMhs } from "./detailUserMhs.js";
-import { responseDataPembimbing } from "./detailUserPembimbing.js";
-import { responseDataMentor } from "./detailUserMentor.js";
-
+import { responseDataMitra } from "./user/detailUserMitra.js";
+import { responseDataMhs } from "./user/detailUserMhs.js";
+import { responseDataPembimbing } from "./user/detailUserPembimbing.js";
+import { responseDataMentor } from "./user/detailUserMentor.js";
 import { show, hide } from "https://jscroot.github.io/element/croot.js";
 
 function get(target_url) {
