@@ -1,9 +1,9 @@
-import { addInner } from "https://jscroot.github.io/element/croot.js";
+import { addInner, hide } from "https://jscroot.github.io/element/croot.js";
 
 export const URLGetMagang =
   "https://asia-southeast2-bursakerja-project.cloudfunctions.net/intermoni-magang";
 
-export const tableDataMagang = `
+export const tableMagang = `
 <tr>
 <td class="h-px w-px whitespace-nowrap">
 <div class="pl-6 pr-6 py-3">
@@ -69,7 +69,7 @@ export function responseData(results) {
 }
 
 export function isiRow(value) {
-  const content = tableDataMagang
+  const content = tableMagang
     .replace("#POSISI#", value.posisi)
     .replace("#LOKASI#", value.lokasi)
     .replace("#EXPIRED#", value.expired)
