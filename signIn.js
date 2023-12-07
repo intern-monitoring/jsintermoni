@@ -35,6 +35,7 @@ const responseData = (result) => {
   if (result.token) {
     // Jika memiliki token, simpan token di cookie
     setCookieWithExpireHour("Authorization", result.token, 2);
+    setCookieWithExpireHour("Role", result.role, 2);
     // Tampilkan SweetAlert berhasil login
     Swal.fire({
       icon: "success",

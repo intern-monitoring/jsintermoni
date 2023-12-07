@@ -12,7 +12,7 @@ const checkLoginStatus = () => {
     Swal.fire({
       icon: "info",
       title: "Informasi",
-      text: "Anda sudah login. Kembali ke halaman sebelumnya.",
+      text: "Anda belum Log out. Silahkan Log out terlebih dahulu.",
       confirmButtonText: "OK",
     }).then(() => {
       // Redirect ke halaman sebelumnya
