@@ -22,6 +22,7 @@ const fetchData = async () => {
 
     localStorage.setItem("mahasiswaMagang", JSON.stringify(data));
 
+    hide("skeletonLoader");
     responseData(data);
     updateCountElement(data.length); // Update count based on the fetched data
   } catch (error) {
