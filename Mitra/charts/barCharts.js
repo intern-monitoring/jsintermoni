@@ -1,5 +1,5 @@
 import { getCookie } from "https://jscroot.github.io/cookie/croot.js";
-import { posisiValue } from "./getMagang.js";
+import { posisiValues } from "./getMagang.js";
 
 const URLGet =
   "https://asia-southeast2-bursakerja-project.cloudfunctions.net/intermoni-mahasiswa-magang";
@@ -18,15 +18,21 @@ const get = (target_url, responseFunction) => {
     .then((result) => {
       const jsonData = JSON.parse(result);
 
-      const valuePosisi = posisiValue;
+      const valuePosisi = posisiValues;
 
       const posisiCounts = jsonData.reduce((counts, item) => {
-        if (item.magang.posisi === posisiValue) {
-          if (!counts[item.magang.posisi]) {
-            counts[item.magang.posisi] = 0;
+        const posisi = item.magang.posisi;
+
+        // Periksa apakah posisi ada di dalam posisiValues
+        if (posisiValues.includes(posisi)) {
+          // Inisialisasi count jika belum ada
+          if (!counts[posisi]) {
+            counts[posisi] = 0;
           }
-          counts[item.magang.posisi]++;
+          // Tambahkan count
+          counts[posisi]++;
         }
+
         return counts;
       }, {});
 
@@ -51,16 +57,15 @@ window.addEventListener("load", () => {
         },
         series: [
           {
-            data: [
-              {
-                x: valuePosisi,
-                y: posisiCounts[valuePosisi] || 0,
-              },
-            ],
+            name: "Jumlah yang apply",
+            data: valuePosisi.map((posisi) => ({
+              x: posisi,
+              y: posisiCounts[posisi] || 0,
+            })),
           },
         ],
         chart: {
-          height: 350,
+          height: 250,
           type: "bar",
         },
         plotOptions: {
