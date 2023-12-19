@@ -46,7 +46,7 @@ export const dataProfileMitra = `
       <div class="flex items-center justify-center gap-x-5">
         <img
           class="-mt-14 relative z-10 inline-block h-32 w-32 mx-auto sm:mx-0 rounded-full ring-4 ring-white"
-          src="../../images/netflix_logo.jpg"
+          src="#PROFILEIMAGE#"
           alt="Image Description"
         />
       </div>
@@ -215,8 +215,15 @@ export function responseData(results) {
   hide("skeletonLoader");
 }
 
+const defaultImageUrl =
+  "https://github.com/intern-monitoring/backend-intermoni/assets/94734096/35299028-25c8-4746-a409-3b1907e6e390";
+
 export function isiRow(value) {
   const content = dataProfileMitra
+    .replace(
+      "#PROFILEIMAGE#",
+      value.imageurl ? value.imageurl : defaultImageUrl
+    )
     .replace("#NAMANARAHUBUNG#", value.namanarahubung)
     .replace("#NOHP#", value.nohpnarahubung)
     .replace("#NAMAPERUSAHAAN#", value.nama)

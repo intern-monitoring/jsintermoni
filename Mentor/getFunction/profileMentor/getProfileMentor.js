@@ -45,7 +45,7 @@ export const dataMentor = `
       <div class="flex items-center justify-center gap-x-5">
         <img
           class="-mt-14 relative z-10 inline-block h-32 w-32 mx-auto sm:mx-0 rounded-full ring-4 ring-white"
-          src="https://images.unsplash.com/photo-1568602471122-7832951cc4c5?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=facearea&facepad=2&w=320&h=320&q=80"
+          src="#PROFILEIMAGE#"
           alt="Image Description"
         />
       </div>
@@ -103,8 +103,15 @@ export function responseData(results) {
   hide("skeletonLoader");
 }
 
+const defaultImageUrl =
+  "https://github.com/intern-monitoring/backend-intermoni/assets/94734096/35299028-25c8-4746-a409-3b1907e6e390";
+
 export function isiRow(value) {
   const content = dataMentor
+    .replace(
+      "#PROFILEIMAGE#",
+      value.imageurl ? value.imageurl : defaultImageUrl
+    )
     .replace("#NAMAMENTOR#", value.namalengkap)
     .replace("#NIK#", value.nik)
     .replace("#PERUSAHAAN#", value.mitra.nama)

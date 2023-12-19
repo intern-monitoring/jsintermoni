@@ -1,46 +1,50 @@
-import { getValue } from "https://jscroot.github.io/element/croot.js";
 import { getCookie } from "https://jscroot.github.io/cookie/croot.js";
 import { urlPUT, AmbilResponse } from "./urlPutProfileMhs.js";
 
-console.log("hadeer");
-
-const putData = (target_url, datajson, responseFunction) => {
+const putData = async (target_url, datajson, responseFunction) => {
   const myHeaders = new Headers();
   myHeaders.append("Authorization", getCookie("Authorization"));
-
-  const raw = JSON.stringify(datajson);
 
   const requestOptions = {
     method: "PUT",
     headers: myHeaders,
-    body: raw,
+    body: datajson,
     redirect: "follow",
   };
 
-  fetch(target_url, requestOptions)
+  await fetch(target_url, requestOptions)
     .then((response) => response.json())
     .then((result) => responseFunction(result))
     .catch((error) => console.log("error", error));
 };
 
 const pushData = () => {
-  const namalengkapValue = getValue("namalengkap");
-  const tanggallahirValue = getValue("tanggallahir");
-  const jeniskelaminValue = getValue("jeniskelamin");
-  const nimValue = getValue("nim");
-  const perguruantinggiValue = getValue("perguruantinggi");
-  const prodiValue = getValue("prodi");
+  const imageInput = document.getElementById("imageInput");
+  const namalengkapValue = document.getElementById("namalengkap");
+  const tanggallahirValue = document.getElementById("tanggallahir");
+  const jeniskelaminValue = document.getElementById("jeniskelamin");
+  const nimValue = document.getElementById("nim");
+  const perguruantinggiValue = document.getElementById("perguruantinggi");
+  const prodiValue = document.getElementById("prodi");
 
-  // Create the updated data object
-  const data = {
-    namalengkap: namalengkapValue,
-    tanggallahir: tanggallahirValue,
-    jeniskelamin: jeniskelaminValue,
-    nim: nimValue,
-    perguruantinggi: perguruantinggiValue,
-    prodi: prodiValue,
-  };
-  putData(urlPUT, data, AmbilResponse);
+  const file = imageInput.files[0];
+  const namalengkap = namalengkapValue.value;
+  const tanggallahir = tanggallahirValue.value;
+  const jeniskelamin = jeniskelaminValue.value;
+  const nim = nimValue.value;
+  const perguruantinggi = perguruantinggiValue.value;
+  const prodi = prodiValue.value;
+
+  const formData = new FormData();
+  formData.append("file", file);
+  formData.append("namalengkap", namalengkap);
+  formData.append("tanggallahir", tanggallahir);
+  formData.append("jeniskelamin", jeniskelamin);
+  formData.append("nim", nim);
+  formData.append("perguruantinggi", perguruantinggi);
+  formData.append("prodi", prodi);
+
+  putData(urlPUT, formData, AmbilResponse);
 };
 
 const updateProfileMhs = document.getElementById("updateProfileMhs");

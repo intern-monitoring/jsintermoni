@@ -2,7 +2,7 @@ const urlParams = new URLSearchParams(window.location.search);
 const mentorId = urlParams.get("mentorId");
 
 export const urlPUT =
-  "https://asia-southeast2-bursakerja-project.cloudfunctions.net/intermoni-mahasiswa?id=" +
+  "https://asia-southeast2-bursakerja-project.cloudfunctions.net/intermoni-mentor?id=" +
   mentorId;
 
 export const AmbilResponse = (result) => {

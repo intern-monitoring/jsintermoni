@@ -1,4 +1,3 @@
-import { getValue } from "https://jscroot.github.io/element/croot.js";
 import { getCookie } from "https://jscroot.github.io/cookie/croot.js";
 import { urlPUT, AmbilResponse } from "./urlPutProfilePembimbing.js";
 
@@ -8,12 +7,10 @@ const putData = (target_url, datajson, responseFunction) => {
   const myHeaders = new Headers();
   myHeaders.append("Authorization", getCookie("Authorization"));
 
-  const raw = JSON.stringify(datajson);
-
   const requestOptions = {
     method: "PUT",
     headers: myHeaders,
-    body: raw,
+    body: datajson,
     redirect: "follow",
   };
 
@@ -24,18 +21,27 @@ const putData = (target_url, datajson, responseFunction) => {
 };
 
 const pushData = () => {
-  const namalengkapValue = getValue("namalengkap");
-  const nikValue = getValue("nik");
-  const prodiValue = getValue("prodi");
+  const imageInput = document.getElementById("imageInput");
+  const namalengkapValue = document.getElementById("namalengkap");
+  const nikValue = document.getElementById("nik");
+  const prodiValue = document.getElementById("prodi");
 
-  // Create the updated data object
-  const data = {
-    namalengkap: namalengkapValue,
-    nik: nikValue,
-    prodi: prodiValue,
-  };
-  console.log(data);
-  putData(urlPUT, data, AmbilResponse);
+  let file = imageInput.files[0];
+  const namalengkap = namalengkapValue.value;
+  const nik = nikValue.value;
+  const prodi = prodiValue.value;
+
+  if (!file) {
+    file = document.getElementById("previewImage").src;
+  }
+
+  const formData = new FormData();
+  formData.append("file", file);
+  formData.append("namalengkap", namalengkap);
+  formData.append("nik", nik);
+  formData.append("prodi", prodi);
+
+  putData(urlPUT, formData, AmbilResponse);
 };
 
 const updateProfileMentor = document.getElementById("updateProfilePembimbing");
