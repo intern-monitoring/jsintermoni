@@ -26,7 +26,7 @@ export const detailPemilihanPembimbing = `
       <div class="flex items-center justify-center gap-x-5">
         <img
           class="-mt-14 relative z-10 inline-block h-32 w-32 mx-auto sm:mx-0 rounded-full ring-4 ring-white"
-          src="https://images.unsplash.com/photo-1568602471122-7832951cc4c5?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=facearea&facepad=2&w=320&h=320&q=80"
+          src="#PROFILEIMAGE#"
           alt="Image Description"
         />
       </div>
@@ -66,12 +66,12 @@ export const detailPemilihanPembimbing = `
     <div class="mx-auto">
       <div class="flex justify-center mb-2">
         <p
-          class="inline-flex justify-center items-center gap-x-3 text-xl text-center font-semibold text-gray-900"
+          class="inline-flex justify-center items-center gap-x-3 text-lg text-center font-semibold text-gray-900"
         >
           <svg
             xmlns="http://www.w3.org/2000/svg"
-            width="20"
-            height="20"
+            width="15"
+            height="15"
             fill="currentColor"
             class="bi bi-bank"
             viewBox="0 0 16 16"
@@ -88,12 +88,12 @@ export const detailPemilihanPembimbing = `
     <div class="mx-auto">
       <div class="flex justify-center mb-2">
         <p
-          class="inline-flex justify-center items-center gap-x-3 text-xl text-center font-semibold text-gray-900"
+          class="inline-flex justify-center items-center gap-x-3 text-lg text-center font-semibold text-gray-900"
         >
           <svg
             xmlns="http://www.w3.org/2000/svg"
-            width="20"
-            height="20"
+            width="15"
+            height="15"
             fill="currentColor"
             class="bi bi-stack"
             viewBox="0 0 16 16"
@@ -121,8 +121,15 @@ export function responseData(results) {
   hide("skeletonLoader");
 }
 
+const defaultImageUrl =
+  "https://github.com/intern-monitoring/backend-intermoni/assets/94734096/35299028-25c8-4746-a409-3b1907e6e390";
+
 export function isiRow(value) {
   const pemilihanpembimbing = detailPemilihanPembimbing
+    .replace(
+      "#PROFILEIMAGE#",
+      value.mahasiswa.imageurl ? value.mahasiswa.imageurl : defaultImageUrl
+    )
     .replace("#NAMALENGKAP#", value.mahasiswa.namalengkap)
     .replace("#TANGGALLAHIR#", value.mahasiswa.tanggallahir)
     .replace("#GENDER#", value.mahasiswa.jeniskelamin)

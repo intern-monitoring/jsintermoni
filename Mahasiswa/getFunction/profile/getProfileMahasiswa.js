@@ -108,8 +108,8 @@ export const dataMahasiswa = `
         >
           <svg
             xmlns="http://www.w3.org/2000/svg"
-            width="18"
-            height="18"
+            width="15"
+            height="15"
             fill="currentColor"
             class="bi bi-bank"
             viewBox="0 0 16 16"
@@ -126,12 +126,12 @@ export const dataMahasiswa = `
     <div class="mx-auto">
       <div class="flex justify-center mb-2">
         <p
-          class="inline-flex justify-center items-center gap-x-3 text-xl text-center font-semibold text-gray-900"
+          class="inline-flex justify-center items-center gap-x-3 text-lg text-center font-semibold text-gray-900"
         >
           <svg
             xmlns="http://www.w3.org/2000/svg"
-            width="20"
-            height="20"
+            width="15"
+            height="15"
             fill="currentColor"
             class="bi bi-stack"
             viewBox="0 0 16 16"

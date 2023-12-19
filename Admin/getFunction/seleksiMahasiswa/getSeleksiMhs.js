@@ -10,7 +10,7 @@ export const tablePending = `
     <div class="flex items-center gap-x-3">
       <img
         class="inline-block h-[2.375rem] w-[2.375rem] rounded-full"
-        src="https://images.unsplash.com/photo-1531927557220-a9e23c1e4794?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=facearea&facepad=2&w=300&h=300&q=80"
+        src="#PROFILEIMAGE#"
         alt="Image Description"
       />
       <div class="grow">
@@ -104,7 +104,7 @@ export const tableLolos = `
     <div class="flex items-center gap-x-3">
       <img
         class="inline-block h-[2.375rem] w-[2.375rem] rounded-full"
-        src="https://images.unsplash.com/photo-1531927557220-a9e23c1e4794?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=facearea&facepad=2&w=300&h=300&q=80"
+        src="#PROFILEIMAGE#"
         alt="Image Description"
       />
       <div class="grow">
@@ -178,7 +178,7 @@ export const tableTidakLolos = `
     <div class="flex items-center gap-x-3">
       <img
         class="inline-block h-[2.375rem] w-[2.375rem] rounded-full"
-        src="https://images.unsplash.com/photo-1531927557220-a9e23c1e4794?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=facearea&facepad=2&w=300&h=300&q=80"
+        src="#PROFILEIMAGE#"
         alt="Image Description"
       />
       <div class="grow">
@@ -256,11 +256,18 @@ export function responseData(results) {
   hide("skeletonLoader");
 }
 
+const defaultImageUrl =
+  "https://github.com/intern-monitoring/backend-intermoni/assets/94734096/35299028-25c8-4746-a409-3b1907e6e390";
+
 export function isiRowPending(value) {
   if (!value.seleksikampus) {
     const pendingStatus = "Pending";
 
     const pending = tablePending
+      .replace(
+        "#PROFILEIMAGE#",
+        value.imageurl ? value.imageurl : defaultImageUrl
+      )
       .replace("#NAMA#", value.namalengkap)
       .replace("#NIM#", value.nim)
       .replace("#PRODI#", value.prodi)
@@ -279,6 +286,10 @@ export function isiRowLolos(value) {
     const lolosStatus = "Lolos";
 
     const lolos = tableLolos
+      .replace(
+        "#PROFILEIMAGE#",
+        value.imageurl ? value.imageurl : defaultImageUrl
+      )
       .replace("#NAMA#", value.namalengkap)
       .replace("#NIM#", value.nim)
       .replace("#PRODI#", value.prodi)
@@ -295,6 +306,10 @@ export function isiRowTidakLolos(value) {
     const tidakLolosStatus = "Tidak Lolos";
 
     const tidaklolos = tableTidakLolos
+      .replace(
+        "#PROFILEIMAGE#",
+        value.imageurl ? value.imageurl : defaultImageUrl
+      )
       .replace("#NAMA#", value.namalengkap)
       .replace("#NIM#", value.nim)
       .replace("#PRODI#", value.prodi)

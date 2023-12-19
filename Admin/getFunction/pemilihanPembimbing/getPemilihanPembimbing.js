@@ -90,9 +90,16 @@ export function responseData(results) {
   hide("skeletonLoader");
 }
 
+const defaultImageUrl =
+  "https://github.com/intern-monitoring/backend-intermoni/assets/94734096/35299028-25c8-4746-a409-3b1907e6e390";
+
 export function isiRow(value) {
   if (value.status === 1 && !value.pembimbing.namalengkap) {
     const pemilihanpembimbing = tablePemilihanPembimbing
+      .replace(
+        "#PROFILEIMAGE#",
+        value.mahasiswa.imageurl ? value.mahasiswa.imageurl : defaultImageUrl
+      )
       .replace("#NAMAMHS#", value.mahasiswa.namalengkap)
       .replace("#EMAILMHS#", value.mahasiswa.akun.email)
       .replace("#POSISI#", value.magang.posisi)

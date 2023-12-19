@@ -10,7 +10,7 @@ export const pendingSeleksiMitra = `
     <div class="flex items-center gap-x-3">
       <img
         class="inline-block h-[2.375rem] w-[2.375rem] rounded-full"
-        src="https://images.unsplash.com/photo-1531927557220-a9e23c1e4794?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=facearea&facepad=2&w=300&h=300&q=80"
+        src="#PROFILEIMAGE#"
         alt="Image Description"
       />
       <div class="grow">
@@ -114,7 +114,7 @@ export const lolosSeleksiMitra = `
     <div class="flex items-center gap-x-3">
       <img
         class="inline-block h-[2.375rem] w-[2.375rem] rounded-full"
-        src="https://images.unsplash.com/photo-1531927557220-a9e23c1e4794?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=facearea&facepad=2&w=300&h=300&q=80"
+        src="#PROFILEIMAGE#"
         alt="Image Description"
       />
       <div class="grow">
@@ -198,7 +198,7 @@ export const tidakLolosSeleksiMitra = `
     <div class="flex items-center gap-x-3">
       <img
         class="inline-block h-[2.375rem] w-[2.375rem] rounded-full"
-        src="https://images.unsplash.com/photo-1531927557220-a9e23c1e4794?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=facearea&facepad=2&w=300&h=300&q=80"
+        src="#PROFILEIMAGE#"
         alt="Image Description"
       />
       <div class="grow">
@@ -285,11 +285,18 @@ export function responseData(results) {
   hide("skeletonLoader");
 }
 
+const defaultImageUrl =
+  "https://github.com/intern-monitoring/backend-intermoni/assets/94734096/35299028-25c8-4746-a409-3b1907e6e390";
+
 export function isiRowPending(value) {
   if (!value.mou) {
     const statusmou = "Pending";
 
     const pending = pendingSeleksiMitra
+      .replace(
+        "#PROFILEIMAGE#",
+        value.imageurl ? value.imageurl : defaultImageUrl
+      )
       .replace("#NAMAPERUSAHAAN#", value.nama)
       .replace("#SEKTOR#", value.sektorindustri)
       .replace("#NARAHUBUNG#", value.namanarahubung)
@@ -308,6 +315,10 @@ export function isiRowLolos(value) {
     const statusmou = "Lolos";
 
     const lolos = lolosSeleksiMitra
+      .replace(
+        "#PROFILEIMAGE#",
+        value.imageurl ? value.imageurl : defaultImageUrl
+      )
       .replace("#NAMAPERUSAHAAN#", value.nama)
       .replace("#SEKTOR#", value.sektorindustri)
       .replace("#NARAHUBUNG#", value.namanarahubung)
@@ -324,6 +335,10 @@ export function isiRowTidakLolos(value) {
     const statusmou = "Tidak Lolos";
 
     const tidaklolos = tidakLolosSeleksiMitra
+      .replace(
+        "#PROFILEIMAGE#",
+        value.imageurl ? value.imageurl : defaultImageUrl
+      )
       .replace("#NAMAPERUSAHAAN#", value.nama)
       .replace("#SEKTOR#", value.sektorindustri)
       .replace("#NARAHUBUNG#", value.namanarahubung)

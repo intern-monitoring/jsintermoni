@@ -2,8 +2,22 @@ import { URLGetSeleksiMitra, responseData } from "./getSeleksiMitra.js";
 import { getCookie } from "https://jscroot.github.io/cookie/croot.js";
 import { hide } from "https://jscroot.github.io/element/croot.js";
 
-const CountSeleksiMitra = (count) => {
-  const resultCountElement = document.getElementById("seleksiMitraCount");
+const CountSeleksiPending = (count) => {
+  const resultCountElement = document.getElementById("seleksiPendingCount");
+  resultCountElement.innerHTML = `
+    <p class="text-sm text-gray-600">
+      <span class="font-semibold text-gray-800">${count}</span> results
+    </p>`;
+};
+const CountSeleksiLolos = (count) => {
+  const resultCountElement = document.getElementById("seleksiLolosCount");
+  resultCountElement.innerHTML = `
+    <p class="text-sm text-gray-600">
+      <span class="font-semibold text-gray-800">${count}</span> results
+    </p>`;
+};
+const CountSeleksiTidakLolos = (count) => {
+  const resultCountElement = document.getElementById("seleksiTidakLolosCount");
   resultCountElement.innerHTML = `
     <p class="text-sm text-gray-600">
       <span class="font-semibold text-gray-800">${count}</span> results
@@ -27,9 +41,15 @@ const get = (target_url, responseFunction) => {
       const jsonData = JSON.parse(result);
       responseFunction(jsonData);
 
-      // Hitung jumlah data dan perbarui tampilan
-      const count = jsonData.length;
-      CountSeleksiMitra(count);
+      // Filter data for each selection status
+      const pendingData = jsonData.filter((value) => !value.mou);
+      const lolosData = jsonData.filter((value) => value.mou === 1);
+      const tidakLolosData = jsonData.filter((value) => value.mou === 2);
+
+      // Update the count for each selection status
+      CountSeleksiPending(pendingData.length);
+      CountSeleksiLolos(lolosData.length);
+      CountSeleksiTidakLolos(tidakLolosData.length);
     })
     .catch((error) => {
       console.log("error", error);
