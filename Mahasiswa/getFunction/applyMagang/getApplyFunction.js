@@ -36,10 +36,10 @@ const get = (target_url, responseFunction) => {
       responseFunction(jsonData);
 
       // Filter data for each selection status
-      const konfirmasiData = jsonData.filter((value) => !value.status);
-      const belumKonfirmasiData = jsonData.filter(
+      const konfirmasiData = jsonData.filter(
         (value) => value.status === 1 || value.status === 2
       );
+      const belumKonfirmasiData = jsonData.filter((value) => !value.status);
 
       // Update the count for each selection status
       CountKonfirmasi(konfirmasiData.length);
