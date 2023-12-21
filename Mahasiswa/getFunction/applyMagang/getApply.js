@@ -267,7 +267,9 @@ export function isiRowBelumKonfirmasi(value) {
     const belumKonfirmasi = tableBelumKonfirmasi
       .replace(
         "#PROFILEIMAGE#",
-        value.imageurl ? value.imageurl : defaultImageUrl
+        value.magang.mitra.imageurl
+          ? value.magang.mitra.imageurl
+          : defaultImageUrl
       )
       .replace("#NAMAPERUSAHAAN#", value.magang.mitra.nama)
       .replace("#POSISI#", value.magang.posisi)
