@@ -14,7 +14,7 @@ class="bg-white hover:bg-gray-50 dark:bg-slate-900 dark:hover:bg-slate-800"
     <div class="flex items-center gap-x-3">
       <img
         class="inline-block h-[2.375rem] w-[2.375rem] rounded-full"
-        src="https://images.unsplash.com/photo-1531927557220-a9e23c1e4794?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=facearea&facepad=2&w=300&h=300&q=80"
+        src="#PROFILEIMAGE#"
         alt="Image Description"
       />
       <div class="grow">
@@ -93,9 +93,18 @@ export function responseData(results) {
   hide("skeletonLoader");
 }
 
+const defaultImageUrl =
+  "https://github.com/intern-monitoring/backend-intermoni/assets/94734096/35299028-25c8-4746-a409-3b1907e6e390";
+
 export function isiRow(value) {
   const wibCreated = convertToWIB(value.createdat);
   const reportreview = tableReportReview
+    .replace(
+      "#PROFILEIMAGE#",
+      value.mahasiswamagang.mahasiswa.imageurl
+        ? value.mahasiswamagang.mahasiswa.imageurl
+        : defaultImageUrl
+    )
     .replace("#NAMAMHS#", value.mahasiswamagang.mahasiswa.namalengkap)
     .replace("#EMAILMHS#", value.mahasiswamagang.mahasiswa.akun.email)
     .replace("#POSISI#", value.mahasiswamagang.magang.posisi)

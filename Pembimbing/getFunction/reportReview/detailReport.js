@@ -27,7 +27,7 @@ export const dataDailyReport = `
         <div>
           <img
             class="inline-block h-28 w-28 rounded-full ring-2 ring-white"
-            src="https://images.unsplash.com/photo-1531927557220-a9e23c1e4794?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=facearea&facepad=2&w=300&h=300&q=80"
+            src="#PROFILEIMAGE#"
             alt="Image Description"
           />
         </div>
@@ -116,9 +116,16 @@ export function responseData(results) {
   hide("skeletonLoader");
 }
 
+const defaultImageUrl =
+  "https://github.com/intern-monitoring/backend-intermoni/assets/94734096/35299028-25c8-4746-a409-3b1907e6e390";
+
 export function isiRow(value) {
   const wibCreated = convertToWIB(value.createdat);
   const content = dataDailyReport
+    .replace(
+      "#PROFILEIMAGE#",
+      value.mahasiswa.imageurl ? value.mahasiswa.imageurl : defaultImageUrl
+    )
     .replace("#MAHASISWA#", value.mahasiswa.namalengkap)
     .replace("#NIM#", value.mahasiswa.nim)
     .replace("#PRODI#", value.mahasiswa.prodi)
