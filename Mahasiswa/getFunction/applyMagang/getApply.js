@@ -26,7 +26,7 @@ export const tableBelumKonfirmasi = `
     <div class="flex items-center gap-x-3">
       <img
         class="inline-block h-[2.375rem] w-[2.375rem] rounded-full"
-        src="../../images/netflix_logo.jpg"
+        src="#PROFILEIMAGE#"
         alt="Image Description"
       />
       <div class="grow">
@@ -133,7 +133,7 @@ export const tableKonfirmasi = `
     <div class="flex items-center gap-x-3">
       <img
         class="inline-block h-[2.375rem] w-[2.375rem] rounded-full"
-        src="../../images/netflix_logo.jpg"
+        src="#PROFILEIMAGE#"
         alt="Image Description"
       />
       <div class="grow">
@@ -231,6 +231,9 @@ export function responseData(results) {
   hide("skeletonLoader");
 }
 
+const defaultImageUrl =
+  "https://github.com/intern-monitoring/backend-intermoni/assets/94734096/35299028-25c8-4746-a409-3b1907e6e390";
+
 export function isiRowBelumKonfirmasi(value) {
   if (!value.status) {
     const statusberkas =
@@ -262,6 +265,10 @@ export function isiRowBelumKonfirmasi(value) {
         : "bg-gray-200";
 
     const belumKonfirmasi = tableBelumKonfirmasi
+      .replace(
+        "#PROFILEIMAGE#",
+        value.imageurl ? value.imageurl : defaultImageUrl
+      )
       .replace("#NAMAPERUSAHAAN#", value.magang.mitra.nama)
       .replace("#POSISI#", value.magang.posisi)
       .replace("#LOKASI#", value.magang.lokasi)
@@ -321,6 +328,12 @@ export function isiRowKonfirmasi(value) {
         : "";
 
     const konfirmasi = tableKonfirmasi
+      .replace(
+        "#PROFILEIMAGE#",
+        value.magang.mitra.imageurl
+          ? value.magang.mitra.imageurl
+          : defaultImageUrl
+      )
       .replace("#NAMAPERUSAHAAN#", value.magang.mitra.nama)
       .replace("#POSISI#", value.magang.posisi)
       .replace("#LOKASI#", value.magang.lokasi)
