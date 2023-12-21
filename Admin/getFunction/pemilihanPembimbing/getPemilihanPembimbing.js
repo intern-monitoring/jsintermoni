@@ -10,7 +10,7 @@ export const tablePemilihanPembimbing = `
     <div class="flex items-center gap-x-3">
       <img
         class="inline-block h-[2.375rem] w-[2.375rem] rounded-full"
-        src="https://images.unsplash.com/photo-1492562080023-ab3db95bfbce?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=facearea&facepad=2&w=300&h=300&q=80"
+        src="#PROFILEIMAGE#"
         alt="Image Description"
       />
       <div class="grow">

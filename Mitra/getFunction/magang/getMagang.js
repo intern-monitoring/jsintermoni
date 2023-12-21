@@ -66,6 +66,7 @@ export const tableMagang = `
 export function responseData(results) {
   console.log(results);
   results.forEach(isiRow);
+  hide("skeletonLoader");
 }
 
 export function isiRow(value) {

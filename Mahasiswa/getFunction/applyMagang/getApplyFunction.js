@@ -2,8 +2,16 @@ import { URLGetApply, responseData } from "./getApply.js";
 import { getCookie } from "https://jscroot.github.io/cookie/croot.js";
 import { hide } from "https://jscroot.github.io/element/croot.js";
 
-const CountApply = (count) => {
-  const resultCountElement = document.getElementById("applyCount");
+const CountKonfirmasi = (count) => {
+  const resultCountElement = document.getElementById("konfirmasiCount");
+  resultCountElement.innerHTML = `
+    <p class="text-sm text-gray-600">
+      <span class="font-semibold text-gray-800">${count}</span> results
+    </p>`;
+};
+
+const CountBelumKonfirmasi = (count) => {
+  const resultCountElement = document.getElementById("belumKonfirmasiCount");
   resultCountElement.innerHTML = `
     <p class="text-sm text-gray-600">
       <span class="font-semibold text-gray-800">${count}</span> results
@@ -27,9 +35,15 @@ const get = (target_url, responseFunction) => {
       const jsonData = JSON.parse(result);
       responseFunction(jsonData);
 
-      // Hitung jumlah data dan perbarui tampilan
-      const count = jsonData.length;
-      CountApply(count);
+      // Filter data for each selection status
+      const konfirmasiData = jsonData.filter((value) => !value.status);
+      const belumKonfirmasiData = jsonData.filter(
+        (value) => value.status === 1 || value.status === 2
+      );
+
+      // Update the count for each selection status
+      CountKonfirmasi(konfirmasiData.length);
+      CountBelumKonfirmasi(belumKonfirmasiData.length);
     })
     .catch((error) => {
       console.log("error", error);
