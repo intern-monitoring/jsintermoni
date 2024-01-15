@@ -67,6 +67,18 @@ export const dataDailyReport = `
           <p class="text-gray-800 text-sm">#NILAI#</p>
         </div>
         <div class="py-2">
+          <h3 class="text-md font-semibold text-gray-800">Nilai dari mentor :</h3>
+          <p class="text-gray-800 text-sm">#NILAIMENTOR#</p>
+        </div>
+        <div class="py-2">
+          <h3 class="text-md font-semibold text-gray-800">
+            Feedback dari mentor:
+          </h3>
+          <ul class="pl-5" style=" list-style-type: disc;">
+            <li class="mt text-gray-800">#FEEDBACK#</li>
+          </ul>
+        </div>
+        <div class="py-2">
           <h3 class="text-md font-semibold text-gray-800">
             Task yang dikerjakan :
           </h3>
@@ -163,6 +175,12 @@ export function isiRow(value) {
       value.nilaipembimbing
         ? value.nilaipembimbing
         : "<span style='color:red;'>Pembimbing belum memberikan nilai</span>"
+    )
+    .replace(
+      "#NILAIMENTOR#",
+      value.nilaimentor
+        ? value.nilaimentor
+        : "<span style='color:red;'>Mentor belum memberikan nilai</span>"
     )
     .replace(
       "#FEEDBACK#",
