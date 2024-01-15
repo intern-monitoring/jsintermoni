@@ -1,10 +1,10 @@
 import { getCookie } from "https://jscroot.github.io/cookie/croot.js";
 
 const URLGet =
-  "https://asia-southeast2-bursakerja-project.cloudfunctions.net/intermoni-report";
+  "https://asia-southeast2-bursakerja-project.cloudfunctions.net/intermoni-mahasiswa-magang";
 
 const mhsCount = (count) => {
-  const resultCountElement = document.getElementById("mentoringCount");
+  const resultCountElement = document.getElementById("bimbinganCount");
   resultCountElement.innerHTML = `<h3 class="mt-1 text-xl font-medium text-gray-800">${count}</h3>`;
 };
 

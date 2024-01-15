@@ -8,6 +8,7 @@ export const tableBelumKonfirmasi = `
 <td class="h-px w-px whitespace-nowrap">
   <div class="px-6 py-1.5">
     <button
+      id="batalApply#IDHAPUS#"
       onclick="deleteApply('#IDHAPUS#')"
       class="inline-flex items-center gap-x-1.5"
     >
@@ -104,23 +105,14 @@ export const tableBelumKonfirmasi = `
   </a>
 </td>
 <td class="h-px w-px whitespace-nowrap">
-  <div class="px-6 py-1.5">
+  <div class="flex justify-center py-3">
     <button
-      id="buttonPilih"
-      value="1"
-      onclick="pilihMagang('#PILIH#')"
-      class="inline-flex items-center gap-x-1.5 text-sm text-green-600 decoration-2 hover:underline font-medium pr-5"
-    >
+    id="buttonPilih#ID#"
+    value="1"
+    onclick="pilihMagang('#PILIH#')"
+    class="button-pilih inline-flex items-center text-sm text-green-600 decoration-2 hover:underline font-medium">
       Pilih
-    </button>
-    <button
-      id="buttonTidakPilih"
-      value="2"
-      onclick="tidakPilihMagang('#TIDAK#')"
-      class="inline-flex items-center gap-x-1.5 text-sm text-red-600 decoration-2 hover:underline font-medium pr-5"
-    >
-      Tidak
-    </button>
+  </button>
   </div>
 </td>
 </tr>
@@ -281,8 +273,36 @@ export function isiRowBelumKonfirmasi(value) {
       .replace("#IDHAPUS#", value._id)
       .replace("#DETAIL#", value._id)
       .replace("#PILIH#", value._id)
+      .replace("#ID#", value._id)
       .replace("#TIDAK#", value._id);
     addInner("belumKonfirmasiMagang", belumKonfirmasi);
+
+    // Kondisi Button pilih
+    if (value.seleksiwewancara !== 1) {
+      hideButtonsPilih(value._id);
+      console.log(value._id);
+    }
+    // Kondisi Button batal apply
+    if (value.seleksiberkas) {
+      hideButtonBatalApply(value._id);
+      console.log(value._id);
+    }
+  }
+}
+
+function hideButtonsPilih(entryId) {
+  const button = document.getElementById(`buttonPilih${entryId}`);
+  if (button) {
+    button.style.visibility = "hidden";
+    console.log(entryId);
+  }
+}
+
+function hideButtonBatalApply(entryId) {
+  const button = document.getElementById(`batalApply${entryId}`);
+  if (button) {
+    button.style.visibility = "hidden";
+    console.log(entryId);
   }
 }
 

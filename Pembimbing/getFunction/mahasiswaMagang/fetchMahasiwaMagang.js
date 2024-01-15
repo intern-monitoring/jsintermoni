@@ -1,6 +1,6 @@
-import { responseData } from "./detailReport.js";
+import { responseData } from "./detailMahasiswaMagang.js";
 import { getCookie } from "https://jscroot.github.io/cookie/croot.js";
-import { urlFetch } from "./urlDetailReport.js";
+import { urlFetch } from "./urlFetchMhsMagang.js";
 
 function get(target_url, responseFunction) {
   const myHeaders = new Headers();
@@ -19,5 +19,4 @@ function get(target_url, responseFunction) {
       console.log("error", error);
     });
 }
-
 get(urlFetch, responseData);

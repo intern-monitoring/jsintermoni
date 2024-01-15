@@ -1,5 +1,5 @@
 import { getCookie } from "https://jscroot.github.io/cookie/croot.js";
-import { getValue } from "https://jscroot.github.io/element/croot.js";
+// import { getValue } from "https://jscroot.github.io/element/croot.js";
 
 const putData = (
   target_url,
@@ -27,7 +27,7 @@ const putData = (
     .catch((error) => console.log("error", error));
 };
 
-const pilihMagang = (TERIMA) => {
+const pilihMagang = (PILIH) => {
   Swal.fire({
     title: "Konfirmasi Magang",
     text: "Pilih magang di perusahaan ini?",
@@ -40,14 +40,18 @@ const pilihMagang = (TERIMA) => {
     if (result.isConfirmed) {
       const target_url =
         "https://asia-southeast2-bursakerja-project.cloudfunctions.net/intermoni-mahasiswa-magang?id=" +
-        TERIMA;
+        PILIH;
       const tokenvalue = getCookie("Authorization");
       const tokenkey = "Authorization";
 
+      console.log(PILIH);
       const responseFunction = (result) => responseData(result);
       const datajson = {
-        status: parseInt(getValue("buttonPilih")),
+        status: parseInt(
+          document.getElementsByClassName("button-pilih")[0].value
+        ),
       };
+      console.log(datajson);
 
       putData(target_url, datajson, tokenkey, tokenvalue, responseFunction);
     }

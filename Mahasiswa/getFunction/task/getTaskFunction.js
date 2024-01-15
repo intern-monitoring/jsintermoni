@@ -1,5 +1,11 @@
-import { URLGetReport, responseData } from "./getReport.js";
+import { URLGetTask, responseData } from "./getTask.js";
 import { getCookie } from "https://jscroot.github.io/cookie/croot.js";
+
+const CountTask = (count) => {
+  const resultCountElement = document.getElementById("countTask");
+  resultCountElement.innerHTML = `
+  <h3 class="mt-1 text-3xl font-semibold text-green-600">${count}</h3>`;
+};
 
 const get = (target_url, responseFunction) => {
   const myHeaders = new Headers();
@@ -15,7 +21,15 @@ const get = (target_url, responseFunction) => {
     .then((result) => {
       const jsonData = JSON.parse(result);
       responseFunction(jsonData);
+
+      if (jsonData.tasks) {
+        const count = jsonData.tasks.length;
+        CountTask(count);
+      }
     })
-    .catch((error) => console.log("error", error));
+    .catch((error) => {
+      console.log("error", error);
+    });
 };
-get(URLGetReport, responseData);
+
+get(URLGetTask, responseData);

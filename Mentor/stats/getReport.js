@@ -1,10 +1,11 @@
 import { getCookie } from "https://jscroot.github.io/cookie/croot.js";
 
 const URLGet =
-  "https://asia-southeast2-bursakerja-project.cloudfunctions.net/intermoni-mahasiswa-magang";
+  "https://asia-southeast2-bursakerja-project.cloudfunctions.net/intermoni-report/mahasiswa-magang?id=" +
+  mahasiswaId;
 
-const mhsCount = (count) => {
-  const resultCountElement = document.getElementById("mentoringCount");
+const reportingCount = (count) => {
+  const resultCountElement = document.getElementById("reportingCount");
   resultCountElement.innerHTML = `<h3 class="mt-1 text-xl font-medium text-gray-800">${count}</h3>`;
 };
 
@@ -22,9 +23,12 @@ const get = (target_url) => {
     .then((result) => {
       const jsonData = JSON.parse(result);
 
-      const mhscount = jsonData.length;
+      const nilai = jsonData.filter((item) => !item.nilaimentor);
 
-      mhsCount(mhscount);
+      const reportcount = nilai.length;
+      console.log(jsonData);
+
+      reportingCount(reportcount);
     })
     .catch((error) => console.log("error", error));
 };

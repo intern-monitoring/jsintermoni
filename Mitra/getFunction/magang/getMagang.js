@@ -50,14 +50,6 @@ export const tableMagang = `
       Edit
     </a>
   </div>
-  <div>
-    <a
-      class="inline-flex items-center cursor-pointer text-sm text-red-600 decoration-2 hover:underline font-medium"
-      onclick="deleteMagang('#IDHAPUS#')"
-    >
-      Delete
-    </a>
-  </div>
 </div>
 </td>
 </tr>
@@ -75,7 +67,6 @@ export function isiRow(value) {
     .replace("#LOKASI#", value.lokasi)
     .replace("#EXPIRED#", value.expired)
     .replace("#IDEDIT#", value._id)
-    .replace("#IDHAPUS#", value._id)
     .replace("#DETAIL#", value._id);
   addInner("magang", content);
 }

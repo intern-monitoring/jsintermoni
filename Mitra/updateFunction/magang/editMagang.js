@@ -3,23 +3,14 @@ export const isiData = (results) => {
     { id: "posisi", path: "posisi" },
     { id: "lokasi", path: "lokasi" },
     { id: "expired", path: "expired" },
+    { id: "deskripsi", path: "deskripsimagang" },
+    { id: "info", path: "infotambahanmagang" },
   ];
 
   inputMapping.forEach(({ id, path, index, property }) => {
     const inputElement = document.getElementById(id);
     const value = getNestedValue(results, path, index, property);
     inputElement.value = value;
-  });
-
-  const inputMappingTiptap = [
-    { id: "deskripsimagang", path: "deskripsimagang" },
-    { id: "infotambahanmagang", path: "infotambahanmagang" },
-  ];
-
-  inputMappingTiptap.forEach(({ id, path, index, property }) => {
-    const inputElement = document.getElementById(id);
-    const value = getNestedValue(results, path, index, property);
-    inputElement.innerHTML = value;
   });
 };
 

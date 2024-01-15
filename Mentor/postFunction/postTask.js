@@ -1,36 +1,18 @@
 import { postWithToken } from "https://jscroot.github.io/api/croot.js";
 import { getValue } from "https://jscroot.github.io/element/croot.js";
 import { getCookie } from "https://jscroot.github.io/cookie/croot.js";
-import { get } from "../../getFunction/mahasiswaMagang/getMhsMagangFunction.js";
-import { URLGetMahasiswaMagang } from "../../getFunction/mahasiswaMagang/getMhsMagang.js";
 
-let mentorID;
+const urlParams = new URLSearchParams(window.location.search);
+const mahasiswaId = urlParams.get("mahasiswaId");
 
-get(URLGetMahasiswaMagang, responseIDMentor);
-
-function responseIDMentor(results) {
-  results.forEach((result) => {
-    getIDMentor(result);
-  });
-}
-
-function getIDMentor(value) {
-  if (value.status === 1) {
-    return (mentorID = value.mentor._id);
-  }
-}
-
-const PostDailyReportMentor = () => {
+const PostTask = () => {
   const target_url =
-    "https://asia-southeast2-bursakerja-project.cloudfunctions.net/intermoni-report";
+    "https://asia-southeast2-bursakerja-project.cloudfunctions.net/intermoni-task?id=" +
+    mahasiswaId;
   const tokenvalue = getCookie("Authorization");
   const tokenkey = "Authorization";
   const datainjson = {
-    judul: getValue("judulReportMentor"),
-    isi: document.getElementById("isiReportMentor").innerHTML,
-    penerima: {
-      _id: mentorID,
-    },
+    tasks: getValue("task").split(","),
   };
   postWithToken(target_url, tokenkey, tokenvalue, datainjson, responseData);
   console.log(datainjson);
@@ -54,4 +36,4 @@ const responseData = (result) => {
   }
 };
 
-window.PostDailyReportMentor = PostDailyReportMentor;
+window.PostTask = PostTask;

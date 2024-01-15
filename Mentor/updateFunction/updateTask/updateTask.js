@@ -1,8 +1,6 @@
 import { getValue } from "https://jscroot.github.io/element/croot.js";
 import { getCookie } from "https://jscroot.github.io/cookie/croot.js";
-import { urlPUT, AmbilResponse } from "./urlPutMagang.js";
-
-console.log("hadeer");
+import { urlPUT, AmbilResponse } from "./urlPutTask.js";
 
 const putData = (target_url, datajson, responseFunction) => {
   const myHeaders = new Headers();
@@ -24,26 +22,18 @@ const putData = (target_url, datajson, responseFunction) => {
 };
 
 const pushData = () => {
-  const posisiValue = getValue("posisi");
-  const lokasiValue = getValue("lokasi");
-  const deskripsiMagangValue = getValue("deskripsimagang");
-  const infoTambahanMagangValue = getValue("infotambahanmagang");
-  const expiredValue = getValue("expired");
+  const taskValue = getValue("editTask").split(",");
 
   // Create the updated data object
   const data = {
-    posisi: posisiValue,
-    lokasi: lokasiValue,
-    deskripsimagang: deskripsiMagangValue,
-    infotambahanmagang: infoTambahanMagangValue,
-    expired: expiredValue,
+    tasks: taskValue,
   };
   putData(urlPUT, data, AmbilResponse);
 };
 
-const updateButton = document.getElementById("updateButton");
+const updateButton = document.getElementById("updateTask");
 
 updateButton.addEventListener("click", () => {
   console.log("button aktif");
-  pushData(); // Call pushData function when the button is clicked
+  pushData();
 });

@@ -1,6 +1,6 @@
 import { getValue } from "https://jscroot.github.io/element/croot.js";
 import { getCookie } from "https://jscroot.github.io/cookie/croot.js";
-import { urlPUT, AmbilResponse } from "./urlPutMagang.js";
+import { urlPUT, AmbilResponse } from "./urlPutPenilaian.js";
 
 console.log("hadeer");
 
@@ -24,26 +24,20 @@ const putData = (target_url, datajson, responseFunction) => {
 };
 
 const pushData = () => {
-  const posisiValue = getValue("posisi");
-  const lokasiValue = getValue("lokasi");
-  const deskripsiMagangValue = getValue("deskripsimagang");
-  const infoTambahanMagangValue = getValue("infotambahanmagang");
-  const expiredValue = getValue("expired");
+  const nilaiValue = parseInt(getValue("nilaimentor"));
+  const feedbackValue = getValue("feedback");
 
   // Create the updated data object
   const data = {
-    posisi: posisiValue,
-    lokasi: lokasiValue,
-    deskripsimagang: deskripsiMagangValue,
-    infotambahanmagang: infoTambahanMagangValue,
-    expired: expiredValue,
+    nilaimentor: nilaiValue,
+    feedback: feedbackValue,
   };
   putData(urlPUT, data, AmbilResponse);
 };
 
-const updateButton = document.getElementById("updateButton");
+const updateButton = document.getElementById("submitNilai");
 
 updateButton.addEventListener("click", () => {
   console.log("button aktif");
-  pushData(); // Call pushData function when the button is clicked
+  pushData();
 });

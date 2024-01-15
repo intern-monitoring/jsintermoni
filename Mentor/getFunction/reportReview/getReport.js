@@ -2,61 +2,35 @@ import { addInner } from "https://jscroot.github.io/element/croot.js";
 import { convertToWIB } from "./convertToWib.js";
 import { hide } from "https://jscroot.github.io/element/croot.js";
 
-export const URLGetReport =
-  "https://asia-southeast2-bursakerja-project.cloudfunctions.net/intermoni-report";
+const urlParams = new URLSearchParams(window.location.search);
+const mahasiswaId = urlParams.get("mahasiswaId");
 
-export const tableReportReview = `
+export const URLGetReport =
+  "https://asia-southeast2-bursakerja-project.cloudfunctions.net/intermoni-report/mahasiswa-magang?id=" +
+  mahasiswaId;
+
+export const tableReport = `
 <tr
-class="bg-white hover:bg-gray-50 dark:bg-slate-900 dark:hover:bg-slate-800"
+class="bg-white hover:bg-gray-50"
 >
 <td class="h-px w-px whitespace-nowrap align-top">
-  <a class="block p-6" href="#">
-    <div class="flex items-center gap-x-3">
-      <img
-        class="inline-block h-[2.375rem] w-[2.375rem] rounded-full"
-        src="#PROFILEIMAGE#"
-        alt="Image Description"
-      />
-      <div class="grow">
-        <span
-          class="block text-sm font-semibold text-gray-800 dark:text-gray-200"
-          >#NAMAMHS#</span
-        >
-        <span class="block text-sm text-gray-500"
-          >#EMAILMHS#</span
-        >
-      </div>
-    </div>
-  </a>
-</td>
-<td class="h-px w-72 whitespace-nowrap">
-  <div class="px-6 py-3">
-    <span
-      class="block text-sm font-semibold text-gray-800"
-      >#POSISI#</span
-    >
-    <span class="block text-sm text-gray-500"
-      >#PERUSAHAAN#</span
-    >
-  </div>
-</td>
-<td class="h-px w-72 min-w-[18rem] align-top">
-  <a class="block p-6" href="#">
-    <span class="block text-sm text-gray-500"
+  <a class="block p-6 cursor-pointer">
+    <span class="block text-sm text-gray-800"
       >#TASK#</span
     >
   </a>
 </td>
 <td class="h-px w-px whitespace-nowrap align-top">
-  <a class="block p-6" href="#">
-    <span class="text-sm text-gray-600 dark:text-gray-400"
+  <a class="block p-6 cursor-pointer">
+    <span
+      class="text-sm text-gray-800"
       >#TANGGAL#</span
     >
   </a>
 </td>
 <td class="h-px w-px whitespace-nowrap align-top">
   <a
-    href="detailReportReview?reportId=#DETAIL#"
+    href="detailReport?reportId=#DETAIL#"
     type="button"
     class="block py-6"
   >
@@ -93,24 +67,11 @@ export function responseData(results) {
   hide("skeletonLoader");
 }
 
-const defaultImageUrl =
-  "https://github.com/intern-monitoring/backend-intermoni/assets/94734096/35299028-25c8-4746-a409-3b1907e6e390";
-
 export function isiRow(value) {
   const wibCreated = convertToWIB(value.createdat);
-  const reportreview = tableReportReview
-    .replace(
-      "#PROFILEIMAGE#",
-      value.mahasiswamagang.mahasiswa.imageurl
-        ? value.mahasiswamagang.mahasiswa.imageurl
-        : defaultImageUrl
-    )
-    .replace("#NAMAMHS#", value.mahasiswamagang.mahasiswa.namalengkap)
-    .replace("#EMAILMHS#", value.mahasiswamagang.mahasiswa.akun.email)
-    .replace("#POSISI#", value.mahasiswamagang.magang.posisi)
-    .replace("#PERUSAHAAN#", value.mahasiswamagang.magang.mitra.nama)
-    .replace("#TASK#", value.judul)
+  const reportreview = tableReport
+    .replace("#TASK#", value.task)
     .replace("#TANGGAL#", wibCreated)
     .replace("#DETAIL#", value._id);
-  addInner("tableReportReview", reportreview);
+  addInner("tableReport", reportreview);
 }
