@@ -58,7 +58,7 @@ export const dataDailyReport = `
       <div>
         <div class="pb-2">
           <h2 class="text-lg font-semibold text-gray-800">
-            Isi Report :
+            Penilaian :
           </h2>
           <div class="border-b pt-1 border-gray-200"></div>
         </div>
@@ -74,9 +74,15 @@ export const dataDailyReport = `
           <h3 class="text-md font-semibold text-gray-800">
             Feedback dari mentor:
           </h3>
-          <ul class="pl-5" style=" list-style-type: disc;">
+          <ul class="pl-5">
             <li class="mt text-gray-800">#FEEDBACK#</li>
           </ul>
+        </div>
+        <div class="pb-2">
+          <h2 class="text-lg font-semibold text-gray-800">
+            Isi Report :
+          </h2>
+          <div class="border-b pt-1 border-gray-200"></div>
         </div>
         <div class="py-2">
           <h3 class="text-md font-semibold text-gray-800">
@@ -96,7 +102,7 @@ export const dataDailyReport = `
           </h3>
           <div>
             <img
-              class="inline-block h-[300px] w-full rounded-lg"
+              class="inline-block h-auto w-full rounded-lg"
               src="#DOKUMENTASI#"
               alt="Image Description"
             />
@@ -161,6 +167,9 @@ const defaultImageDokumentasi =
   "https://github.com/intern-monitoring/backend-intermoni/assets/94734096/35299028-25c8-4746-a409-3b1907e6e390";
 
 export function isiRow(value) {
+  let feedback = value.feedback;
+
+  feedback = feedback.replace(/<li>/g, '<li style="list-style-type: disc;">');
   const wibCreated = convertToWIB(value.createdat);
   const content = dataDailyReport
     .replace(
@@ -184,8 +193,8 @@ export function isiRow(value) {
     )
     .replace(
       "#FEEDBACK#",
-      value.feedback
-        ? value.feedback
+      feedback
+        ? feedback
         : "<span style='color:red;'>Mentor belum memberikan feedback</span>"
     )
     .replace("#TASK#", value.task)

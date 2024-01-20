@@ -5,7 +5,7 @@ export const dataApply = `
   <div class="p-5">
     <div class="space-y-4">
       <div>
-        <div class="grid grid-cols-2">
+        <div>
           <div class="flex items-center gap-x-4">
             <img
               class="rounded-full w-20 h-20"
@@ -19,36 +19,21 @@ export const dataApply = `
               <p class="text-xl font-normal text-gray-800">#MITRA#</p>
             </div>
           </div>
-          <p
-            class="inline-flex justify-end items-end gap-x-1 text-center font-semibold text-gray-800"
-          >
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              width="16"
-              height="16"
-              fill="currentColor"
-              class="bi bi-geo-alt"
-              viewBox="0 0 16 16"
-            >
-              <path
-                d="M12.166 8.94c-.524 1.062-1.234 2.12-1.96 3.07A31.493 31.493 0 0 1 8 14.58a31.481 31.481 0 0 1-2.206-2.57c-.726-.95-1.436-2.008-1.96-3.07C3.304 7.867 3 6.862 3 6a5 5 0 0 1 10 0c0 .862-.305 1.867-.834 2.94zM8 16s6-5.686 6-10A6 6 0 0 0 2 6c0 4.314 6 10 6 10z"
-              />
-              <path
-                d="M8 8a2 2 0 1 1 0-4 2 2 0 0 1 0 4zm0 1a3 3 0 1 0 0-6 3 3 0 0 0 0 6z"
-              />
-            </svg>
-            #LOKASI#
-          </p>
         </div>
       </div>
       <div class="border-b border-gray-200"></div>
+      <h3
+        class="text-lg font-semibold text-gray-800 dark:text-white"
+      >
+        Lokasi Perusahaan : #LOKASI#
+      </h3>
       <div>
         <h3
           class="text-lg font-semibold text-gray-800 dark:text-white"
         >
           Tentang Perusahaan
         </h3>
-        <ul class="list-disc pl-5">
+        <ul class="pl-5">
           <li class="mt-1 text-gray-800">#TENTANG#</li>
         </ul>
       </div>
@@ -59,7 +44,7 @@ export const dataApply = `
         >
           Deskripsi Magang
         </h3>
-        <ul class="list-disc pl-5">
+        <ul class="pl-5">
           <li class="mt-1 text-gray-800">#DESKRIPSI#</li>
         </ul>
       </div>
@@ -70,7 +55,7 @@ export const dataApply = `
         >
           Info Tambahan Magang
         </h3>
-        <ul class="list-disc pl-5">
+        <ul class="pl-5">
           <li class="mt-1 text-gray-800">#INFO#</li>
         </ul>
       </div>
@@ -120,6 +105,11 @@ const defaultImageUrl =
   "https://github.com/intern-monitoring/backend-intermoni/assets/94734096/35299028-25c8-4746-a409-3b1907e6e390";
 
 export function isiRow(value) {
+  let deskripsi = value.magang.deskripsimagang;
+  let info = value.magang.infotambahanmagang;
+
+  deskripsi = deskripsi.replace(/<li>/g, '<li style="list-style-type: disc;">');
+  info = info.replace(/<li>/g, '<li style="list-style-type: disc;">');
   const content = dataApply
     .replace(
       "#PROFILEIMAGE#",
@@ -131,8 +121,8 @@ export function isiRow(value) {
     .replace("#LOKASI#", value.magang.lokasi)
     .replace("#MITRA#", value.magang.mitra.nama)
     .replace("#TENTANG#", value.magang.mitra.tentang)
-    .replace("#DESKRIPSI#", value.magang.deskripsimagang)
-    .replace("#INFO#", value.magang.infotambahanmagang)
+    .replace("#DESKRIPSI#", deskripsi)
+    .replace("#INFO#", info)
     .replace("#EXPIRED#", value.magang.expired);
   addInner("detailApply", content);
 }

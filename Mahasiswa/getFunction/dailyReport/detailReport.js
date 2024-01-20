@@ -37,7 +37,7 @@ export const dataDailyReportPembimbing = `
   <h3 class="text-md font-semibold text-gray-800">
     Hasil pekerjaan :
   </h3>
-  <ul class="list-disc pl-5">
+  <ul class="pl-5">
     <li class="mt text-gray-800">#HASIL#</li>
   </ul>
 </div>
@@ -47,7 +47,7 @@ export const dataDailyReportPembimbing = `
   </h3>
   <div>
     <img
-      class="inline-block h-[400px] w-full rounded-lg"
+      class="inline-block h-auto w-full rounded-lg"
       src="#DOKUMENTASI#"
       alt="Image Description"
     />
@@ -108,7 +108,7 @@ export const dataDailyReportMentor = `
   <h3 class="text-md font-semibold text-gray-800">
     Feedback dari mentor :
   </h3>
-  <ul class="pl-5" style="list-style-type: disc">
+  <ul class="pl-5">
     <li class="mt text-gray-800">#FEEDBACK#</li>
   </ul>
 </div>
@@ -134,7 +134,7 @@ export const dataDailyReportMentor = `
   <h3 class="text-md font-semibold text-gray-800">
     Hasil pekerjaan :
   </h3>
-  <ul class="list-disc pl-5">
+  <ul class="pl-5">
     <li class="mt text-gray-800">#HASIL#</li>
   </ul>
 </div>
@@ -144,7 +144,7 @@ export const dataDailyReportMentor = `
   </h3>
   <div>
     <img
-      class="inline-block h-[400px] w-full rounded-lg"
+      class="inline-block h-auto w-full rounded-lg"
       src="#DOKUMENTASI#"
       alt="Image Description"
     />
@@ -197,6 +197,9 @@ const defaultImageDokumentasi =
   "https://github.com/intern-monitoring/backend-intermoni/assets/94734096/35299028-25c8-4746-a409-3b1907e6e390";
 
 export function isiRowPembimbing(value) {
+  let hasil = value.hasil;
+
+  hasil = hasil.replace(/<li>/g, '<li style="list-style-type: disc;">');
   const wibCreated = convertToWIB(value.createdat);
   const dataReportPembimbing = dataDailyReportPembimbing
     .replace(
@@ -207,7 +210,7 @@ export function isiRowPembimbing(value) {
     )
     .replace("#TASK#", value.task)
     .replace("#DESKRIPSI#", value.deskripsi)
-    .replace("#HASIL#", value.hasil)
+    .replace("#HASIL#", hasil)
     .replace(
       "#DOKUMENTASI#",
       value.kehadiran ? value.kehadiran : defaultImageDokumentasi
@@ -219,6 +222,11 @@ export function isiRowPembimbing(value) {
 }
 
 export function isiRowMentor(value) {
+  let hasil = value.hasil;
+  let feedback = value.feedback;
+
+  hasil = hasil.replace(/<li>/g, '<li style="list-style-type: disc;">');
+  feedback = feedback.replace(/<li>/g, '<li style="list-style-type: disc;">');
   const wibCreated = convertToWIB(value.createdat);
   const dataReportMentor = dataDailyReportMentor
     .replace(
@@ -229,13 +237,13 @@ export function isiRowMentor(value) {
     )
     .replace(
       "#FEEDBACK#",
-      value.feedback
-        ? value.feedback
+      feedback
+        ? feedback
         : "<span style='color:red;'>Mentor belum memberikan feedback</span>"
     )
     .replace("#TASK#", value.task)
     .replace("#DESKRIPSI#", value.deskripsi)
-    .replace("#HASIL#", value.hasil)
+    .replace("#HASIL#", hasil)
     .replace(
       "#DOKUMENTASI#",
       value.kehadiran ? value.kehadiran : defaultImageDokumentasi

@@ -4,8 +4,8 @@ export const dataMagang = `
 <div class="bg-white rounded-xl border shadow-md p-4 sm:p-7">
 <div class="p-5">
   <div class="space-y-4">
-    <div class="flex justify-between items-center">
-      <h3 class="text-xl font-semibold text-gray-800">#POSISI#</h3>
+    <div class="flex-none items-center lg:flex lg:justify-between">
+      <h3 class="text-xl font-semibold text-gray-800 mb-2 lg:mb-0">#POSISI#</h3>
       <p
         class="inline-flex justify-center items-center gap-x-1 text-center font-semibold text-gray-800"
       >
@@ -35,7 +35,7 @@ export const dataMagang = `
       >
         Deskripsi Magang
       </h3>
-      <ul class="list-disc pl-5">
+      <ul class="pl-5">
         <li class="mt-1 text-gray-800">#DESKRIPSI#</li>
       </ul>
     </div>
@@ -46,13 +46,11 @@ export const dataMagang = `
       >
         Info Tambahan Magang
       </h3>
-      <ul class="list-disc pl-5">
+      <ul class="pl-5">
         <li class="mt-1 text-gray-800">#INFO#</li>
       </ul>
     </div>
-
-    <div>
-      <div class="border-t border-gray-200 py-1"></div>
+    <div class="flex justify-between border-t border-gray-200 py-2">
       <p
         class="inline-flex justify-center items-center gap-x-2 text-center font-semibold text-gray-800"
       >
@@ -73,8 +71,6 @@ export const dataMagang = `
         </svg>
         Expired : #EXPIRED#
       </p>
-    </div>
-    <div class="mt-5 flex justify-end gap-x-2">
       <a
         href="daftarMagang.html"
         class="py-2 px-3 inline-flex cursor-pointer justify-center items-center gap-2 rounded-md border font-medium bg-white text-gray-700 shadow-sm align-middle hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-white focus:ring-blue-600 transition-all text-sm"
@@ -94,11 +90,17 @@ export function responseData(results) {
 }
 
 export function isiRow(value) {
+  let deskripsi = value.deskripsimagang;
+  let info = value.infotambahanmagang;
+
+  deskripsi = deskripsi.replace(/<li>/g, '<li style="list-style-type: disc;">');
+  info = info.replace(/<li>/g, '<li style="list-style-type: disc;">');
   const content = dataMagang
+
     .replace("#POSISI#", value.posisi)
     .replace("#LOKASI#", value.lokasi)
-    .replace("#DESKRIPSI#", value.deskripsimagang)
-    .replace("#INFO#", value.infotambahanmagang)
+    .replace("#DESKRIPSI#", deskripsi)
+    .replace("#INFO#", info)
     .replace("#EXPIRED#", value.expired);
   addInner("detailMagang", content);
 }
