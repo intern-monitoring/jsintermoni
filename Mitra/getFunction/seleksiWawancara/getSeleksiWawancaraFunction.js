@@ -41,6 +41,8 @@ const get = (target_url, responseFunction) => {
       const jsonData = JSON.parse(result);
       const filteredData = jsonData.filter((user) => user.status !== 2);
 
+      responseFunction(filteredData);
+
       const pendingData = filteredData.filter(
         (value) => !value.seleksiwewancara
       );
