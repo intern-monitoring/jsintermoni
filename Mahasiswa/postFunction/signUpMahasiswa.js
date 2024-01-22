@@ -30,6 +30,7 @@ const SignUpMahasiswa = () => {
       email: getValue("email"),
       password: getValue("password"),
       confirmpass: getValue("confirmpass"),
+      phone: getValue("phone"),
     },
   };
   console.log(datainjson);
