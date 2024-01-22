@@ -35,14 +35,12 @@ const get = (target_url, responseFunction) => {
         (user) => user.status === 1 && !user.pembimbing.namalengkap
       );
 
-      // Call the response function with the filtered data
       responseFunction(filteredData);
 
       CountPemilihanPembimbing(filteredData.length);
     })
     .catch((error) => {
       console.log("error", error);
-      // Hide the skeleton loader in case of an error
       hide("skeletonLoader");
     });
 };

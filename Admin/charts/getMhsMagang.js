@@ -1,7 +1,7 @@
 import { getCookie } from "https://jscroot.github.io/cookie/croot.js";
 
-const URLGetMagang =
-  "https://asia-southeast2-bursakerja-project.cloudfunctions.net/intermoni-magang";
+const URLGetMitra =
+  "https://asia-southeast2-bursakerja-project.cloudfunctions.net/intermoni-mitra";
 
 const get = (target_url, responseFunction) => {
   const myHeaders = new Headers();
@@ -18,17 +18,17 @@ const get = (target_url, responseFunction) => {
     .catch((error) => console.log("error", error));
 };
 
-export let posisiValues = [];
+export let mitraValues = [];
 
-const responsePosisi = (results) => {
+const responseMitra = (results) => {
   results.forEach((result) => {
-    getPosisiMagang(result);
+    getNamaMitra(result);
     console.log(result);
   });
 };
 
-const getPosisiMagang = (value) => {
-  posisiValues.push(value.posisi);
+const getNamaMitra = (value) => {
+  mitraValues.push(value.nama);
 };
 
-get(URLGetMagang, responsePosisi);
+get(URLGetMitra, responseMitra);

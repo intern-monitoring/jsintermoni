@@ -35,6 +35,10 @@ const pushData = () => {
   const perguruantinggi = perguruantinggiValue.value;
   const prodi = prodiValue.value;
 
+  if (!file) {
+    file = document.getElementById("previewImage").src;
+  }
+
   const formData = new FormData();
   formData.append("file", file);
   formData.append("namalengkap", namalengkap);

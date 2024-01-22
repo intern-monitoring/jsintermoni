@@ -25,15 +25,15 @@ const get = (target_url, responseFunction) => {
     .then((response) => response.text())
     .then((result) => {
       const jsonData = JSON.parse(result);
-      responseFunction(jsonData);
 
-      // Hitung jumlah data dan perbarui tampilan
-      const count = jsonData.length;
+      const filteredData = jsonData.filter((user) => user.status !== 2);
+      responseFunction(filteredData);
+
+      const count = filteredData.length;
       CountSeleksi(count);
     })
     .catch((error) => {
       console.log("error", error);
-      // Hide the skeleton loader in case of an error
       hide("skeletonLoader");
     });
 };
