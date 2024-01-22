@@ -39,23 +39,24 @@ const get = (target_url, responseFunction) => {
     .then((response) => response.text())
     .then((result) => {
       const jsonData = JSON.parse(result);
-      responseFunction(jsonData);
+      const filteredData = jsonData.filter((user) => user.status !== 2);
 
-      // Filter data for each selection status
-      const pendingData = jsonData.filter((value) => !value.seleksiberkas);
-      const lolosData = jsonData.filter((value) => value.seleksiberkas === 1);
-      const tidakLolosData = jsonData.filter(
+      responseFunction(filteredData);
+
+      const pendingData = filteredData.filter((value) => !value.seleksiberkas);
+      const lolosData = filteredData.filter(
+        (value) => value.seleksiberkas === 1
+      );
+      const tidakLolosData = filteredData.filter(
         (value) => value.seleksiberkas === 2
       );
 
-      // Update the count for each selection status
       CountPending(pendingData.length);
       CountLolos(lolosData.length);
       CountTidakLolos(tidakLolosData.length);
     })
     .catch((error) => {
       console.log("error", error);
-      // Hide the skeleton loader in case of an error
       hide("skeletonLoader");
     });
 };

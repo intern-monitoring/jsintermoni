@@ -39,18 +39,18 @@ const get = (target_url, responseFunction) => {
     .then((response) => response.text())
     .then((result) => {
       const jsonData = JSON.parse(result);
-      responseFunction(jsonData);
+      const filteredData = jsonData.filter((user) => user.status !== 2);
 
-      // Filter data for each selection status
-      const pendingData = jsonData.filter((value) => !value.seleksiwewancara);
-      const lolosData = jsonData.filter(
+      const pendingData = filteredData.filter(
+        (value) => !value.seleksiwewancara
+      );
+      const lolosData = filteredData.filter(
         (value) => value.seleksiwewancara === 1
       );
-      const tidakLolosData = jsonData.filter(
+      const tidakLolosData = filteredData.filter(
         (value) => value.seleksiwewancara === 2
       );
 
-      // Update the count for each selection status
       CountPending(pendingData.length);
       CountLolos(lolosData.length);
       CountTidakLolos(tidakLolosData.length);
