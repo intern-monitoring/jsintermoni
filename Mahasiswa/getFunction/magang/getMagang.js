@@ -40,7 +40,7 @@ export const cardMagang = `
           #LOKASI#
         </p>
         <h3 class="text-sm font-semibold text-gray-800">
-          Expired : #EXPIRED#
+          Batas Akhir : #EXPIRED#
         </h3>
       </div>
       <div class="border-t border-gray-200 mt-2 mb-2"></div>

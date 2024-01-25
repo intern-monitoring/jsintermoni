@@ -31,6 +31,24 @@ class="bg-white hover:bg-gray-50"
   </a>
 </td>
 <td class="h-px w-px whitespace-nowrap align-top">
+  <div class="flex justify-center py-3">
+    <span
+      class="#BGMENTOR# inline-flex items-center gap-1.5 py-0.5 px-2 rounded-full text-xs font-medium text-gray-900"
+    >
+      #NILAIMENTOR#
+    </span>
+  </div>
+</td>
+<td class="h-px w-px whitespace-nowrap align-top">
+  <div class="flex justify-center py-3">
+    <span
+      class="#BGPEMBIMBING# inline-flex items-center gap-1.5 py-0.5 px-2 rounded-full text-xs font-medium text-gray-900"
+    >
+      #NILAIPEMBIMBING#
+    </span>
+  </div>
+</td>
+<td class="h-px w-px whitespace-nowrap align-top">
   <a
     href="detailDailyReport?reportId=#DETAIL#"
     type="button"
@@ -73,6 +91,22 @@ export function isiRowReport(value) {
     .replace("#TASKMAGANG#", value.task)
     .replace("#DESKRIPSI#", value.deskripsi)
     .replace("#TANGGAL#", wibCreated)
+    .replace(
+      "#NILAIMENTOR#",
+      !value.feedback && !value.nilaimentor ? "belum dinilai" : "sudah dinilai"
+    )
+    .replace(
+      "#NILAIPEMBIMBING#",
+      !value.nilaipembimbing ? "belum dinilai" : "sudah dinilai"
+    )
+    .replace(
+      "#BGMENTOR#",
+      value.feedback && value.nilaimentor ? "bg-green-100" : "bg-gray-100"
+    )
+    .replace(
+      "#BGPEMBIMBING#",
+      value.nilaipembimbing ? "bg-green-100" : "bg-gray-100"
+    )
     .replace("#DETAIL#", value._id);
   addInner("tableDailyReport", dailyReport);
 }

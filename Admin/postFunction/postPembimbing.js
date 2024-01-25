@@ -13,6 +13,7 @@ const PostPembimbing = () => {
     prodi: getValue("prodi"),
     akun: {
       email: getValue("email"),
+      phone: getValue("phone"),
       password: getValue("password"),
       confirmpass: getValue("confirmpass"),
     },

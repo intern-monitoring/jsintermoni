@@ -12,6 +12,7 @@ const PostMentor = () => {
     nik: getValue("nik"),
     akun: {
       email: getValue("email"),
+      phone: getValue("phone"),
       password: getValue("password"),
       confirmpass: getValue("confirmpass"),
     },

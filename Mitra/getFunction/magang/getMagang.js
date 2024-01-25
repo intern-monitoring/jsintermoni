@@ -65,7 +65,12 @@ export function isiRow(value) {
   const content = tableMagang
     .replace("#POSISI#", value.posisi)
     .replace("#LOKASI#", value.lokasi)
-    .replace("#EXPIRED#", value.expired)
+    .replace(
+      "#EXPIRED#",
+      new Date(value.expired) < new Date()
+        ? `<span style="color:red;">${value.expired}</span>`
+        : value.expired
+    )
     .replace("#IDEDIT#", value._id)
     .replace("#DETAIL#", value._id);
   addInner("magang", content);

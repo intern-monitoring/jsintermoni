@@ -16,11 +16,16 @@ const fetchData = async () => {
     const response = await fetch(URLGetMagang, requestOptions);
     const data = await response.json();
 
+    const filteredData = data.filter((value) => {
+      const expiredDate = new Date(value.expired);
+      return expiredDate > new Date();
+    });
+
     // Simpan data baru ke localStorage
-    localStorage.setItem("magangData", JSON.stringify(data));
+    localStorage.setItem("magangData", JSON.stringify(filteredData));
 
     hide("skeletonLoader");
-    responseDataMagang(data);
+    responseDataMagang(filteredData);
   } catch (error) {
     console.error("Error fetching or processing data: ", error);
     hide("skeletonLoader");
