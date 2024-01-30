@@ -28,7 +28,7 @@ class="bg-white hover:bg-gray-50"
     >
   </a>
 </td>
-<td class="h-px w-px whitespace-nowrap align-top">
+<td class="h-px w-px whitespace-nowrap align-middle">
   <div class="flex justify-center py-3">
     <span
       class="#BGSTATUS# inline-flex items-center gap-1.5 py-0.5 px-2 rounded-full text-xs font-medium text-gray-900"
